@@ -1,9 +1,9 @@
 {
-  "advertise_addr": "ADDR",
   "bind_addr": "0.0.0.0",
   "advertise": {
-    "rpc": "10.7.0.10:4647",
-    "serf": "10.7.0.10:4648"
+    "http": "ADDR:4646",
+    "rpc": "ADDR:4647",
+    "serf": "ADDR:4648"
   },
   "data_dir": "/var/lib/nomad",
   "datacenter": "nomad-intro",
