@@ -10,7 +10,7 @@ Vagrant.configure(2) do |config|
     c1.vm.provision "shell", inline: "hostnamectl set-hostname consul"
     c1.vm.provision "shell", inline: "cd /vagrant/consul && make deps install install-server"
     c1.vm.provision "shell", inline: "hostess add consul $(</tmp/self.ip)"
-    config.vm.provider "virtualbox" do |v|
+    c1.vm.provider "virtualbox" do |v|
       v.memory = 256
       v.cpus = 1
     end
@@ -24,7 +24,7 @@ Vagrant.configure(2) do |config|
     n.vm.provision "shell", inline: "consul join 10.7.0.15"
     n.vm.provision "shell", inline: "cd /vagrant/nomad && make deps install install-server"
     n.vm.provision "shell", inline: "hostess add nomad $(</tmp/self.ip)"
-    config.vm.provider "virtualbox" do |v|
+    n.vm.provider "virtualbox" do |v|
       v.memory = 256
       v.cpus = 1
     end
@@ -40,7 +40,7 @@ Vagrant.configure(2) do |config|
       node.vm.provision "docker" # Just install it
       node.vm.provision "shell", inline: "cd /vagrant/nomad && make install install-client"
       node.vm.provision "shell", inline: "hostess add docker#{d} $(</tmp/self.ip)"
-      config.vm.provider "virtualbox" do |v|
+      node.vm.provider "virtualbox" do |v|
         v.memory = 1024
         v.cpus = 1
       end
